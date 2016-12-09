@@ -16,6 +16,9 @@ export default DS.JSONAPIAdapter.extend({
     // NOTE: for certain objects we don't expose a top-level API object and only operate on the
     // nested route. Because of that, some requests have to be transformed here.
 
+    if (modelName === 'user' && id === null) {
+      return utils.buildApiUrl('user');
+    }
     // Use organization nested, singular /organizations/:org_id/github-integration-request route.
     if (modelName === 'github-integration-request') {
       // TODO: use adapterOptions for this.
